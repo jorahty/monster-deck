@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'model/model.dart';
 import 'pages/home.dart';
 import 'pages/saved.dart';
 
@@ -14,20 +16,23 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     const colorSchemeSeed = Colors.deepPurple;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: ThemeData(
-        colorSchemeSeed: colorSchemeSeed,
-        useMaterial3: true,
-        brightness: Brightness.light,
+    return ChangeNotifierProvider(
+      create: (context) => ViewModel(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
+        theme: ThemeData(
+          colorSchemeSeed: colorSchemeSeed,
+          useMaterial3: true,
+          brightness: Brightness.light,
+        ),
+        darkTheme: ThemeData(
+          colorSchemeSeed: colorSchemeSeed,
+          useMaterial3: true,
+          brightness: Brightness.dark,
+        ),
+        home: const Home(),
       ),
-      darkTheme: ThemeData(
-        colorSchemeSeed: colorSchemeSeed,
-        useMaterial3: true,
-        brightness: Brightness.dark,
-      ),
-      home: const Home(),
     );
   }
 }
