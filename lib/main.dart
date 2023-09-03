@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'pages/home.dart';
+import 'pages/saved.dart';
+
 void main() {
   runApp(const App());
 }
@@ -9,7 +12,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const colorSchemeSeed = Colors.blue;
+    const colorSchemeSeed = Colors.deepPurple;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -48,8 +51,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     const List<Widget> pages = [
-      Text('Home'),
-      Text('Saved'),
+      HomePage(),
+      SavedPage(),
     ];
 
     var page = pages[selectedIndex];
