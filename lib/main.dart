@@ -81,9 +81,11 @@ class _HomeState extends State<Home> {
             return Row(
               children: [
                 NavigationRail(
+                  elevation: 4,
                   selectedIndex: selectedIndex,
                   onDestinationSelected: selectIndex,
                   extended: true,
+                  minExtendedWidth: 150,
                   destinations: const [
                     NavigationRailDestination(
                       icon: Icon(Icons.home),
