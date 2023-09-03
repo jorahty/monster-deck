@@ -39,6 +39,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var selectedIndex = 0;
 
+  void selectIndex(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const List<Widget> pages = [
@@ -55,16 +61,20 @@ class _HomeState extends State<Home> {
             return Column(
               children: [
                 Expanded(child: page),
-                BottomNavigationBar(items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.turned_in),
-                    label: 'Saved',
-                  ),
-                ]),
+                BottomNavigationBar(
+                  currentIndex: selectedIndex,
+                  onTap: selectIndex,
+                  items: const [
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.home),
+                      label: 'Home',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: Icon(Icons.turned_in),
+                      label: 'Saved',
+                    ),
+                  ],
+                ),
               ],
             );
           } else {
@@ -72,6 +82,7 @@ class _HomeState extends State<Home> {
               children: [
                 NavigationRail(
                   selectedIndex: selectedIndex,
+                  onDestinationSelected: selectIndex,
                   extended: true,
                   destinations: const [
                     NavigationRailDestination(
