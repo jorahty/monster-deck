@@ -9,7 +9,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const colorSchemeSeed = Colors.pink;
+    const colorSchemeSeed = Colors.blue;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -61,6 +61,7 @@ class _HomeState extends State<Home> {
             return Column(
               children: [
                 Expanded(child: page),
+                const Divider(height: 1),
                 BottomNavigationBar(
                   currentIndex: selectedIndex,
                   onTap: selectIndex,
@@ -81,11 +82,9 @@ class _HomeState extends State<Home> {
             return Row(
               children: [
                 NavigationRail(
-                  elevation: 4,
                   selectedIndex: selectedIndex,
                   onDestinationSelected: selectIndex,
-                  extended: true,
-                  minExtendedWidth: 150,
+                  labelType: NavigationRailLabelType.all,
                   destinations: const [
                     NavigationRailDestination(
                       icon: Icon(Icons.home),
@@ -97,6 +96,7 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
+                const VerticalDivider(width: 1),
                 Expanded(child: page),
               ],
             );
