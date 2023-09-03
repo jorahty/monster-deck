@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'monster.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -7,7 +9,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: FilledButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MonsterPage(),
+            ),
+          );
+        },
         child: const Text('Buy now'),
       ),
     );
