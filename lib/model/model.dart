@@ -208,8 +208,11 @@ class ViewModel extends ChangeNotifier {
 
   final List<Monster> _saved = [];
 
+  Monster? _selectedMonster;
+
   List<Monster> get monsters => _monsters;
   List<Monster> get saved => _saved;
+  Monster? get selectedMonster => _selectedMonster;
 
   void toggleSaved(Monster monster) {
     if (_saved.contains(monster)) {
@@ -218,5 +221,9 @@ class ViewModel extends ChangeNotifier {
       _saved.add(monster);
     }
     notifyListeners();
+  }
+
+  void selectMonster(Monster monster) {
+    _selectedMonster = monster;
   }
 }
