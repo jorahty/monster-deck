@@ -37,29 +37,58 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    const List<Widget> pages = [
+      Text('Home'),
+      Text('Saved'),
+    ];
+
+    var page = pages[selectedIndex];
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text('Hello'),
-            ),
-            const SizedBox(height: 20),
-            FilledButton(
-              onPressed: () {},
-              child: const Text('Hello'),
-            ),
-            const SizedBox(height: 20),
-            FloatingActionButton.extended(
-              onPressed: () {},
-              label: const Text('Hello'),
-            )
-          ],
-        ),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth < 450) {
+            return Column(
+              children: [
+                Expanded(child: page),
+                BottomNavigationBar(items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.turned_in),
+                    label: 'Saved',
+                  ),
+                ]),
+              ],
+            );
+          } else {
+            return Row(
+              children: [
+                NavigationRail(
+                  selectedIndex: selectedIndex,
+                  extended: true,
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text('Home'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.turned_in),
+                      label: Text('Saved'),
+                    ),
+                  ],
+                ),
+                Expanded(child: page),
+              ],
+            );
+          }
+        },
       ),
     );
   }
